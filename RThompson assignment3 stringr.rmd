@@ -1,0 +1,58 @@
+---
+title: "Assignment3 StringR"
+author: "Randall Thompson"
+date: "9/15/2019"
+output:
+  html_document:
+    df_print: paged
+---
+```{r}
+library(stringr)
+raw.data <- "555-1239Moe Szyslak(636) 555-0113Burns, C. Montgomery555-6542Rev. Timothy Lovejoy555 8904Ned Flanders636-555-3226Simpson, Homer5553642Dr. Julius Hibbert"
+name <- unlist(str_extract_all(raw.data, "[[:alpha:].,, ]{2,}"))
+```
+## Problem 3
+Rearrange vector as first name last name
+```{r}
+nameFirstLast <- sapply(strsplit(name, ", "),function(x){paste(rev(x),collapse=" ")})
+print(nameFirstLast)
+```
+Logic vector whether a character has a title
+```{r}
+str_detect(name, c("Dr.|Rev.")) 
+```
+Logic vector whether a character has a second name (abbreviated first name)
+```{r}
+str_detect(name, "[A-Z][.]")
+```
+
+## Problem 4
+#### a 
+#[0-9]+\\$ 
+Any number between 0-9, 1 or more times at the end of a line. 
+
+111
+
+#### b 
+#\\b[a-z]{1,4}\\b
+A word starts with any lowercase letter a-z and is between 1-4 letters long.
+
+cat
+
+#### c 
+#.*?\\.txt$
+Any character followed by ".txt" at the end of the line. This is a lazy format so the program stops at the first ".txt".
+
+blah.txt
+
+#### d
+#\\d{2}/\\d{2}/\\d{4}
+Two digits 0-9, a forward slash, two digits 0-9, a forward slash, then four digits 0-9
+
+09/15/2019
+
+#### e 
+#<(.+?)>.+?</\\1>
+Opening tag with any character in lazy format, any character in lazy format, closing tag matching the opening tag.
+
+#<title>This is the title</title>
