@@ -1,0 +1,55 @@
+---
+title: "YouTube Recommender System"
+author: "Randall Thompson"
+date: "11/10/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## YouTube: What to Watch Next
+
+#### “Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube”  
+
+YouTube’s watch next recommendation engine is used once a user has finished a video given that there are no additional videos to be played next in a playlist.  
+
+### First we look at the perspective of the user. 
+
+#### Who are your target users?
+
+YouTube is targeting people who want to watch videos online. In November of 2018, 90% of all internet users watched a YouTube video. https://www.statista.com/statistics/266201/us-market-share-of-leading-internet-video-portals/
+
+#### What are their key goals?
+
+The goal of the user is to quickly and easily watch high quality videos. 
+
+#### How can you help them accomplish those goals?
+
+The viewing experience must high quality. No waiting for the video to load, quality image, picture and sound synchronized. The video content must also be high quality. Users want entertainment, education, news, sports, fashion, music, and more. 
+
+### Second from the business perspective.
+
+#### Who are your target users?
+
+Shareholders for YouTube and parent company Alphabet. 
+
+#### What are their key goals?
+
+Maximize time spent watching videos. The more videos watched, the more ads can be run, the more money the company makes. Also user engagement by clicks, likes, and comments to help improve future recommendations.
+
+#### How can you help them accomplish those goals?
+
+Recommend quality content that the users want to watch. 
+
+### Reverse Engineering the Algorithm
+
+An article was posted by Google Engineers on how the YouTube recommendation algorithm works. https://github.com/RandallThompson/Data607/blob/master/zhao2019.pdf While watching a video, next video recommendations are listed in a column to the right. One of the problems engineers have is that people will often click the first recommendation, not the one that will bring them the most satisfaction, introducing bias into the model. The second problem is the sometimes conflicting objectives of watching vs sharing. 
+
+The solution YouTube engineers found was to use a Wide and Deep model. The Wide refers to a linear model which factors the video positional bias. The Deep portion is the workhorse of the model. A deep neural network point-based ranking model is used to maximize the competing watching and sharing objectives. 
+
+A multitask learning model architecture called Multi-gate Mixture-of-Experts (MMoE) was chosen for learning multiple ranking objectives. The ranking problem is modeled as a combination of classification problems and regression problems. 
+
+### Recommendations
+
+Since YouTube is a holding of Alphabet, and since Google tracks 80% of all web-traffic on the internet, I would like it if Google could coordinate across platforms what I’m searching for. It would help me immensely if after Googling R’s recommenderlab package, YouTube would factor that into their recommendations. With a heavily weighted 6-hour window of keyword searches, I think YouTube could greatly increase their satisfaction and engagement objectives. 
